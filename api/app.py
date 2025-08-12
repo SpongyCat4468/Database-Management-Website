@@ -31,9 +31,10 @@ def index():
 
 if __name__ == "__main__":
     # Start Discord bot in background
-    bot_thread = threading.Thread(target=run, daemon=True)
+    bot_thread = threading.Thread(target=run)
     bot_thread.start()
 
     # Start Flask server (Render will set PORT environment variable)
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, use_reloader=False)
+    app.run(host="0.0.0.0", port=port, use_reloader=False, threaded=True)
+
